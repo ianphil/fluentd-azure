@@ -1,0 +1,20 @@
+{
+	"docker":{
+		"port": "2376",
+		"options": ["-D", "--dns=8.8.8.8"]
+	},
+	"compose": {
+		"cache" : {
+			"image" : "memcached",
+			"ports" : ["11211:11211"]
+		},
+		"web": {
+			"image": "ghost",
+			"ports": ["80:2368"]
+		}
+	},
+	"compose-environment": {
+		"COMPOSE_PROJECT_NAME": "blog",
+		"COMPOSE_HTTP_TIMEOUT": "600"
+	}
+}

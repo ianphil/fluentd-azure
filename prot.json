@@ -1,0 +1,16 @@
+{
+    "environment" : {
+        "SECRET_ENV": "<<secret-value>>",
+        "MYSQL_ROOT_PASSWORD": "very-secret-password"
+    },
+    "certs": {
+    	"ca": "<<base64 encoded ~/docker/ca.pem>>",
+        "cert": "<<base64 encoded ~/docker/cert.pem>>",
+        "key": "<<base64 encoded ~/docker/key.pem>>"
+    },
+    "login": {
+    	"username": "myusername",
+        "password": "mypassword",
+        "email": "name@example.com"
+    }
+}
