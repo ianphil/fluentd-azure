@@ -3,12 +3,12 @@
 This repository is a walk through for building a container environment in Azure. The following resources are created and configured:
 
  - A UbuntuLTS VM
- - Latest version of Docker engine via Docker VM Extention
- - Secure docker endpoint using TLS
- - Fluend Container with custom config
- - Elasticseach Container
+ - Latest version of Docker engine via Docker VM Extension
+ - Secure Docker endpoint using TLS
+ - Fluentd Container with custom config
+ - Elasticsearch Container
 
- *NOTE: For an indepth explination, refer to this blogpost: [DOES NOT EXIST YET](http://tripdubroot.com/)
+ *NOTE: For an in-depth explanation, refer to this blogpost: [DOES NOT EXIST YET](http://tripdubroot.com/)
 
  To get started set the following env vars:
 
@@ -25,7 +25,7 @@ sh docker-server.sh
 ## TLS Keys
 Keys will be created in folder `keys/`.
 
-## Dependancies
+## Dependencies
 
 ### Microsoft Azure CLI 2.0
 
