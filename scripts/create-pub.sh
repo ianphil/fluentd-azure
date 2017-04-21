@@ -7,4 +7,4 @@ echo '
 		"options": ["-D", "--dns=8.8.8.8"]
 	}
 }
-' > pub.json
+' > config/pub.json

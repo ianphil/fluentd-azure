@@ -12,4 +12,4 @@ echo '
         "key": "'$ENC_SVR_KEY'"
     }
 }
-' > prot.json
+' > config/prot.json
