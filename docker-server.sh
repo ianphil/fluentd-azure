@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export AZ_HOSTNAME='ipdockervm2'
+export AZ_HOSTNAME='ipdockervm'
 export AZ_LOCATION='eastus'
-export AZ_RGROUP='fluentd-azure2'
+export AZ_RGROUP='fluentd-azure'
 export AZ_DNSNAME=$AZ_HOSTNAME
 export AZ_DNSPATH="$AZ_LOCATION.cloudapp.azure.com"
 export AZ_DNSFQDN="$AZ_DNSNAME.$AZ_DNSPATH"
