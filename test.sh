@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# bash tls-certs.sh
+export TMP_USR='azuser'
 
-ENC_CA=$(<keys/b64_ca.txt)
-
-echo $ENC_CA
+bash ttest.sh

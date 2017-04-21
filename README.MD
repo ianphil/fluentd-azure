@@ -8,13 +8,7 @@ This repository is a walk through for building a container environment in Azure.
  - Fluentd Container with custom config
  - Elasticsearch Container
 
- *NOTE: For an in-depth explanation, refer to this blogpost: [DOES NOT EXIST YET](http://tripdubroot.com/)
-
- To get started set the following env vars:
-
- ```bash
-export HOST=<dnsname>.eastus.cloudapp.azure.com
- ```
+*NOTE: For an in-depth explanation, refer to this blogpost: [DOES NOT EXIST YET](http://tripdubroot.com/)
 
 Entrypoint script:
 
