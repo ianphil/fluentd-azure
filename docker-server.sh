@@ -52,11 +52,34 @@ az vm extension set \
 log "VM extension added to $AZ_HOSTNAME"
 
 # Test TLS
-# docker --tlsverify --tlscacert=keys/ca.pem --tlscert=keys/cert.pem --tlskey=keys/key.pem -H=$AZ_DNSFQDN:2376 version
+docker --tlsverify \
+  --tlscacert=keys/ca.pem \
+  --tlscert=keys/cert.pem \
+  --tlskey=keys/key.pem \
+  -H=$AZ_DNSFQDN:2376 \
+  version
+
+# Copy fluentd config
+scp -oStrictHostKeyChecking=no fluent.conf tdr@$AZ_DNSFQDN:~/fluent.conf
+
+# Copy fluentd Dockerfile
+scp Dockerfile tdr@$AZ_DNSFQDN:~/Dockerfile
+
+# Build dockerfile with elasticsearch
+docker --tlsverify \
+  --tlscacert=keys/ca.pem \
+  --tlscert=keys/cert.pem \
+  --tlskey=keys/key.pem \
+  -H=$AZ_DNSFQDN:2376 build -t custom-fluent . --no-cache
 
 # run Fluentd container
-
-# < old > Add a custom script extension to install fluentd
+docker --tlsverify \
+  --tlscacert=keys/ca.pem \
+  --tlscert=keys/cert.pem \
+  --tlskey=keys/key.pem \
+  -H=$AZ_DNSFQDN:2376 run \
+  -itd -p 24224:24224 \
+  custom-fluent
 
 # Start elastic Search
 
