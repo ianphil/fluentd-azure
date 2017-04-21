@@ -65,6 +65,10 @@ scp -oStrictHostKeyChecking=no fluent.conf tdr@$AZ_DNSFQDN:~/fluent.conf
 # Copy fluentd Dockerfile
 scp Dockerfile tdr@$AZ_DNSFQDN:~/Dockerfile
 
+# Copy daemon.json Docker config for log-driver
+ssh tdr@$AZ_DNSFQDN 'sudo chmod 766 /etc/docker'
+scp daemon.json tdr@$AZ_DNSFQDN:/etc/docker/daemon.json
+
 # Build dockerfile with elasticsearch
 docker --tlsverify \
   --tlscacert=keys/ca.pem \
