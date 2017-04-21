@@ -70,11 +70,7 @@ scp config/Dockerfile tdr@$AZ_DNSFQDN:~/Dockerfile
 
 # Build dockerfile with elasticsearch
 log "Build custom fluentd image"
-docker --tlsverify \
-  --tlscacert=keys/ca.pem \
-  --tlscert=keys/cert.pem \
-  --tlskey=keys/key.pem \
-  -H=$AZ_DNSFQDN:2376 build -t custom-fluent . --no-cache
+docker --tlsverify --tlscacert=keys/ca.pem --tlscert=keys/cert.pem --tlskey=keys/key.pem -H=$AZ_DNSFQDN:2376 build -t custom-fluent github.com/tripdubroot/fluentd-azure
 
 # run Fluentd container
 log "Run fluentd container"

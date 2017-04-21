@@ -8,7 +8,7 @@ This repository is a walk through for building a container environment in Azure.
  - Fluentd Container with custom config
  - Elasticsearch Container
 
-*NOTE: For an in-depth explanation, refer to this blogpost: [DOES NOT EXIST YET](http://tripdubroot.com/)
+*NOTE: For an in-depth explanation, refer to this blogpost: [Protect your Docker Daemon on Azure](https://tripdubroot.com/protect-your-docker-daemon-on-azure-6ec6a4942df9)
 
 Entrypoint script:
 
