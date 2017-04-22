@@ -22,18 +22,15 @@ az vm create -n $AZ_HOSTNAME \
   --admin-username tdr \
   --authentication-type ssh \
   --public-ip-address-dns-name $AZ_DNSNAME
-log "$AZ_HOSTNAME created..."
 
 # Open Ports: Docker TLS, Elasticsearch
 log "$AZ_HOSTNAME: opening ports..."
 az vm open-port --resource-group $AZ_RGROUP --name $AZ_HOSTNAME --port 2376 --priority 100
 az vm open-port --resource-group $AZ_RGROUP --name $AZ_HOSTNAME --port 9200 --priority 110
-log "$AZ_HOSTNAME ports created..."
 
 # Create TLS Certs
 log "Creating Certs"
 sh scripts/tls-certs.sh
-log "Certs created..."
 
 # Create Public Docker config file
 sh scripts/create-pub.sh
@@ -88,7 +85,7 @@ docker --tlsverify \
 
 # Start elastic Search
 log "Run elasticsearch container"
-ssh tdr@$AZ_DNSFQDN 'sudo sysctl -w vm.max_map_count=262144'
+ssh -oStrictHostKeyChecking=no tdr@$AZ_DNSFQDN 'sudo sysctl -w vm.max_map_count=262144'
 docker --tlsverify \
   --tlscacert=keys/ca.pem \
   --tlscert=keys/cert.pem \

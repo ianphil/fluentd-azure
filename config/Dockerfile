@@ -16,7 +16,7 @@ RUN apk add --update --virtual .build-deps \
  && rm -rf /var/cache/apk/* \
            /home/fluent/.gem/ruby/2.3.0/cache/*.gem
 
-COPY config/fluent.conf /fluentd/etc/fluent.conf
+COPY fluent.conf /fluentd/etc/fluent.conf
 USER fluent
 
 EXPOSE 24284
