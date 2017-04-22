@@ -5,7 +5,7 @@ docker --tlsverify \
   --tlscacert=keys/ca.pem \
   --tlscert=keys/cert.pem \
   --tlskey=keys/key.pem \
-  -H=$AZ_DNSFQDN:2376 run ubuntu /bin/echo 'Hello world'
+  -H=$AZ_DNSFQDN:2376 run --log-driver=fluentd ubuntu /bin/echo 'Hello world'
 
 # Curl Elastic search
 curl -XGET "http://$AZ_DNSFQDN:9200/_all/_search?q=*"

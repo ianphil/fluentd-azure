@@ -62,15 +62,13 @@ docker --tlsverify \
   -H=$AZ_DNSFQDN:2376 \
   version
 
-# Copy fluentd config
-scp -oStrictHostKeyChecking=no config/fluent.conf tdr@$AZ_DNSFQDN:~/fluent.conf
-
-# Copy fluentd Dockerfile
-scp config/Dockerfile tdr@$AZ_DNSFQDN:~/Dockerfile
-
 # Build dockerfile with elasticsearch
 log "Build custom fluentd image"
-docker --tlsverify --tlscacert=keys/ca.pem --tlscert=keys/cert.pem --tlskey=keys/key.pem -H=$AZ_DNSFQDN:2376 build -t custom-fluent github.com/tripdubroot/fluentd-azure
+docker --tlsverify \
+  --tlscacert=keys/ca.pem \
+  --tlscert=keys/cert.pem \
+  --tlskey=keys/key.pem \
+  -H=$AZ_DNSFQDN:2376 build -t custom-fluent config/
 
 # run Fluentd container
 log "Run fluentd container"
@@ -83,10 +81,10 @@ docker --tlsverify \
   custom-fluent
 
 # Copy daemon.json Docker config for log-driver
-ssh tdr@$AZ_DNSFQDN 'sudo curl https://raw.githubusercontent.com/tripdubroot/fluentd-azure/master/config/daemon.json -o /etc/docker/daemon.json'
+# ssh -oStrictHostKeyChecking=no tdr@$AZ_DNSFQDN 'sudo curl https://raw.githubusercontent.com/tripdubroot/fluentd-azure/master/config/daemon.json -o /etc/docker/daemon.json'
 
 # Resatart docker to use fluentd log driver
-ssh tdr@$AZ_DNSFQDN 'sudo systemctl restart docker'
+# ssh tdr@$AZ_DNSFQDN 'sudo systemctl restart docker'
 
 # Start elastic Search
 log "Run elasticsearch container"
